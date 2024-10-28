@@ -30,7 +30,10 @@ export default class Carrinho {
        this.carrinho[cpf].push(produto)
     }
     public finalizarCompra(cliente:Cliente): void {
-       
+        if (this.carrinho[cliente.getCpf.getValor] == undefined || this.carrinho[cliente.getCpf.getValor].length == 0) {
+            console.log(`Nenhum produto adicionado!`);
+            return;
+        }
         console.log(`CPF do cliente: ${cliente.getCpf.getValor}`)
         console.log(`Produtos: \n`)
         this.carrinho[cliente.getCpf.getValor].forEach(produto => {
@@ -41,7 +44,7 @@ export default class Carrinho {
         })
         
         cliente.getProdutosConsumidos.push(...this.carrinho[cliente.getCpf.getValor])
-        delete this.carrinho[cliente.getCpf.getValor]
+         this.carrinho[cliente.getCpf.getValor] = []
         console.log(`Compra finalizada com sucesso!`)
     }
 }
